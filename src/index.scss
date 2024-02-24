@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --cc-datepicker-accent-color: #0052cc;
+    --cc-datepicker-accent-foreground-color: #ffffff;
+    --cc-datepicker-background-color: #ffffff;
+    --cc-datepicker-text-main-color: #101828;
+    --cc-datepicker-text-muted-color: #9ca3af;
+    --cc-datepicker-shadow: 0px 1px 16px 2px rgba(13, 16, 33, 0.08), 1px 6px 32px rgba(5, 22, 35, 0.06);
+}
+
+body {
+    font-family: 'Inter';
+}
+
+/* 
+ ************************** Mixins **************************
+*/
+@mixin day-row() {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+@mixin day-col() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.25rem;
+    text-align: center;
+}
+
+@mixin item-active() {
+    background-color: var(--cc-datepicker-accent-color);
+    color: var(--cc-datepicker-accent-foreground-color);
+}
+
+@mixin item-hover() {
+    position: relative;
+
+    &:not(.disabled) {
+        &:hover {
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-color: var(--cc-datepicker-accent-color);
+                opacity: 0.1;
+                border-radius: inherit;
+            }
+        }
+    }
+}
+
+@mixin item-disabled() {
+    background-color: inherit;
+    color: var(--cc-datepicker-text-muted-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 
+ ************************** Picker Container **************************
+*/
+.cc-datepicker--container {
+    width: fit-content;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.cc-datepicker--container * {
+    box-sizing: border-box;
+}
+
+/* 
+ ************************** Picker **************************
+*/
+.cc-datepicker--picker {
+    background-color: var(--cc-datepicker-background-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: var(--cc-datepicker-shadow);
+    max-width: 100%;
+    min-width: 284px;
+    user-select: none;
+}
+
+/* 
+ ************************** Picker Head **************************
+*/
+.cc-datepicker--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.cc-datepicker--navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 6px;
+    color: var(--cc-datepicker-text-main-color);
+    cursor: pointer;
+
+    @include item-hover();
+
+    &.disabled {
+        @include item-disabled();
+    }
+}
+
+.cc-datepicker--header-text-container {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.cc-datepicker--header-text {
+    color: var(--cc-datepicker-text-main-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+}
+
+.cc-datepicker--header-text[role='button'] {
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+
+    @include item-hover();
+}
+
+/* 
+ ************************** DayPicker **************************
+*/
+
+.cc-datepicker--day-row {
+    @include day-row();
+}
+
+.cc-datepicker--weekday-row {
+    @include day-row();
+
+    border-bottom: 1px solid rgb(0 0 0 / 5%);
+    margin-bottom: 0.5rem;
+}
+
+.cc-datepicker--weekday-col {
+    @include day-col();
+
+    font-size: 0.75rem;
+    color: var(--cc-datepicker-text-muted-color);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.cc-datepicker--day-col {
+    @include day-col();
+
+    height: 2rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    color: var(--cc-datepicker-text-main-color);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:not(.current-month) {
+        color: var(--cc-datepicker-text-muted-color);
+    }
+
+    @include item-hover();
+
+    &.disabled {
+        @include item-disabled();
+    }
+
+    &.active {
+        @include item-active();
+    }
+}
+
+/* 
+ ************************** MonthPicker **************************
+*/
+.cc-datepicker--month-row {
+    margin-top: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+}
+
+.cc-datepicker--month-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 2rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    color: var(--cc-datepicker-text-main-color);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    @include item-hover();
+
+    &.disabled {
+        @include item-disabled();
+    }
+
+    &.active {
+        @include item-active();
+    }
+}
+
+/* 
+ ************************** YearPicker **************************
+*/
+.cc-datepicker--year-row {
+    margin-top: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+}
+
+.cc-datepicker--year-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 2rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    color: var(--cc-datepicker-text-main-color);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    @include item-hover();
+
+    &.disabled {
+        @include item-disabled();
+    }
+
+    &.active {
+        @include item-active();
+    }
+}
