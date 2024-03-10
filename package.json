@@ -1,12 +1,30 @@
 {
-  "name": "react-datepicker",
-  "private": true,
-  "version": "0.0.0",
+  
+  "name": "@react-component-library/react-datepicker",
+  "description": "A user-friendly, intuitive, reusable, and customizable datepicker for React.",
+  "author": "Khan Cirhan",
+  "version": "0.0.1",
+  "license": "ISC",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
+    "*.md",
     "dist"
+  ],
+  "keywords": [
+    "react",
+    "datepicker",
+    "calendar",
+    "date-picker",
+    "ui",
+    "react-component-library",
+    "component",
+    "input",
+    "form",
+    "date",
+    "time",
+    "react-datepicker"
   ],
   "scripts": {
     "dev": "vite",
@@ -15,6 +33,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-component-library/react-datepicker.git"
+  },
+  "homepage": "https://github.com/react-component-library/react-datepicker",
+  "bugs": {
+    "url": "https://github.com/react-component-library/react-datepicker/issues"
   },
   "peerDependencies": {
     "react": "^18.2.0",

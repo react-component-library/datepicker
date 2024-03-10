@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 
 const useControlledState = <T>(options: {
     initialState: T;
@@ -7,10 +7,14 @@ const useControlledState = <T>(options: {
 }): [T, Dispatch<SetStateAction<T>>] => {
     const { initialState, value: controlledValue, setValue: setControlledValue } = options;
 
+    const isControlledMode = useMemo(() => {
+        return controlledValue !== undefined && setControlledValue !== undefined;
+    }, [controlledValue, setControlledValue]);
+
     const [unControlledValue, setUnControlledValue] = useState(initialState);
 
-    const value = controlledValue !== undefined ? controlledValue : unControlledValue;
-    const setValue = controlledValue !== undefined ? setControlledValue : setUnControlledValue;
+    const value = isControlledMode ? controlledValue : unControlledValue;
+    const setValue = isControlledMode ? setControlledValue : setUnControlledValue;
 
     return [value, setValue];
 };
