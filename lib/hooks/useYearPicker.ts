@@ -15,13 +15,19 @@ interface UseYearPickerProps {
 
 const useYearPicker = (props: UseYearPickerProps) => {
     const {
-        value,
+        value: controlledValue,
         onChange,
         preSelectionDate: controlledPreSelectionDate,
         setPreSelectionDate: controlledSetPreSelectionDate,
         minDate = getDefaultMinDate(),
         maxDate = getDefaultMaxDate(),
     } = props;
+
+    const [value, setValue] = useControlledState({
+        initialState: null,
+        value: controlledValue,
+        setValue: onChange ? (date) => onChange(date as Date) : undefined,
+    });
 
     const [preSelectionDate, setPreSelectionDate] = useControlledState({
         initialState: getInitialViewDate(value, maxDate),
@@ -109,9 +115,11 @@ const useYearPicker = (props: UseYearPickerProps) => {
                 return newDate;
             });
 
-            onChange(date);
+            setValue(date);
+
+            onChange?.(date);
         },
-        [isGreaterThanMaxDate, isLessThanMinDate, onChange, setPreSelectionDate]
+        [isGreaterThanMaxDate, isLessThanMinDate, onChange, setPreSelectionDate, setValue]
     );
 
     return {

@@ -3,15 +3,12 @@ import { twMerge } from 'tailwind-merge';
 import useMonthPicker from '../../hooks/useMonthPicker';
 import MonthPickerCell from '../MonthPickerCell/MonthPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
+import { BaseCalendarProps } from '../../helpers/types';
 
-interface MonthPickerProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    value: Date;
-    onChange: (date: Date) => void;
+interface MonthPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
     preSelectionDate?: Date;
     setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
     onYearPickerSelect?: () => void;
-    minDate?: Date;
-    maxDate?: Date;
 }
 
 const MonthPicker: FC<MonthPickerProps> = forwardRef((props, ref) => {

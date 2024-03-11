@@ -4,16 +4,25 @@ import { getDefaultMaxDate, getDefaultMinDate, getInitialViewDate } from '../../
 import DayPicker from '../DayPicker/DayPicker';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import YearPicker from '../YearPicker/YearPicker';
+import { BaseCalendarProps } from '../../helpers/types';
+import useControlledState from '../../hooks/useControlledState';
 
-interface DateCalendarProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    value: Date;
-    onChange: (date: Date) => void;
-    minDate?: Date;
-    maxDate?: Date;
-}
+interface DateCalendarProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
 
 const DateCalendar: FC<DateCalendarProps> = forwardRef((props, ref) => {
-    const { value, onChange, minDate = getDefaultMinDate(), maxDate = getDefaultMaxDate(), ...rest } = props;
+    const {
+        value: controlledValue,
+        onChange,
+        minDate = getDefaultMinDate(),
+        maxDate = getDefaultMaxDate(),
+        ...rest
+    } = props;
+
+    const [value, setValue] = useControlledState({
+        initialState: null,
+        value: controlledValue,
+        setValue: onChange ? (date) => onChange(date as Date) : undefined,
+    });
 
     const [preSelectionDate, setPreSelectionDate] = useState(getInitialViewDate(value, maxDate));
 
@@ -21,9 +30,11 @@ const DateCalendar: FC<DateCalendarProps> = forwardRef((props, ref) => {
 
     const handleDayChange = useCallback(
         (date: Date) => {
-            onChange(date);
+            setValue(date);
+
+            onChange?.(date);
         },
-        [onChange]
+        [onChange, setValue]
     );
 
     const handleMonthChange = useCallback((date: Date) => {

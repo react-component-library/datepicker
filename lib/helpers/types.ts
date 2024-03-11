@@ -3,6 +3,13 @@ import { Dispatch, HTMLProps, SetStateAction } from 'react';
 
 export type FloatingPlacement = Placement;
 
+export interface BaseCalendarProps {
+    value?: Date;
+    onChange?: (date: Date) => void;
+    minDate?: Date;
+    maxDate?: Date;
+}
+
 export interface UseFloatingElementProps {
     open?: boolean;
     setOpen?: Dispatch<SetStateAction<boolean>>;

@@ -5,16 +5,13 @@ import { formatDate } from '../../helpers/utils';
 import useDayPicker from '../../hooks/useDayPicker';
 import DayPickerCell from '../DayPickerCell/DayPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
+import { BaseCalendarProps } from '../../helpers/types';
 
-interface DayPickerProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    value: Date;
-    onChange: (date: Date) => void;
+interface DayPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
     preSelectionDate?: Date;
     setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
     onMonthPickerSelect?: () => void;
     onYearPickerSelect?: () => void;
-    minDate?: Date;
-    maxDate?: Date;
 }
 
 const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {

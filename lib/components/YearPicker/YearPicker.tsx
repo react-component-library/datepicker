@@ -2,14 +2,11 @@ import { ComponentPropsWithRef, Dispatch, FC, SetStateAction, forwardRef, useCal
 import useYearPicker from '../../hooks/useYearPicker';
 import PickerHeader from '../PickerHeader/PickerHeader';
 import YearPickerCell from '../YearPickerCell/YearPickerCell';
+import { BaseCalendarProps } from '../../helpers/types';
 
-interface YearPickerProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    value: Date;
-    onChange: (date: Date) => void;
+interface YearPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
     preSelectionDate?: Date;
     setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
-    minDate?: Date;
-    maxDate?: Date;
 }
 
 const YearPicker: FC<YearPickerProps> = forwardRef((props, ref) => {

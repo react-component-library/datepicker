@@ -30,12 +30,17 @@ function App() {
 
             <DateCalendar value={date4} onChange={setDate4} className="w-[320px] bg-white shadow-2xl p-4 rounded-xl" />
 
+            <DateCalendar className="w-[320px] bg-white shadow-2xl p-4 rounded-xl" />
+
             <div className="my-8 mx-8">
                 <hr />
             </div>
 
             <div className="h-[400px]">
-                <DatePicker inputProps={{ placeholder: 'select a date (Uncontrolled)', className: 'w-[320px]' }} />
+                <DatePicker
+                    onChange={() => console.log('a')}
+                    inputProps={{ placeholder: 'select a date (Uncontrolled)', className: 'w-[320px]' }}
+                />
 
                 <DatePicker
                     value={date5}

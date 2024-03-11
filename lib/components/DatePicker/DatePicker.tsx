@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, FC, ReactNode, useCallback, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { UseFloatingElementProps } from '../../helpers/types';
+import { BaseCalendarProps, UseFloatingElementProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
 import useControlledState from '../../hooks/useControlledState';
 import useFloatingElement from '../../hooks/useFloatingElement';
@@ -9,10 +9,12 @@ import Calendar from '../DateCalendar/DateCalendar';
 // value
 // onChange
 // format
-// excludeDates
-// includeDates
 // minDate
 // maxDate
+
+// excludeDates
+// includeDates
+
 // highlightDates
 // closeOnSelect
 // defaultValue
@@ -28,12 +30,8 @@ interface CalendarProps extends UseFloatingElementProps {
     className?: string;
 }
 
-interface DatePickerProps {
-    value?: Date;
-    onChange?: (date: Date) => void;
+interface DatePickerProps extends BaseCalendarProps {
     format?: string;
-    minDate?: Date;
-    maxDate?: Date;
     calendarProps?: CalendarProps;
     inputProps?: InputProps;
     renderInput?: (inputProps: InputProps) => ReactNode;
@@ -52,8 +50,8 @@ const DatePicker: FC<DatePickerProps> = (props) => {
 
     const [value, setValue] = useControlledState({
         initialState: null,
-        value: controlledValue !== undefined ? controlledValue : undefined,
-        setValue: (date) => onChange?.(date as Date),
+        value: controlledValue,
+        setValue: onChange ? (date) => onChange(date as Date) : undefined,
     });
 
     const { context, refs, getReferenceProps, getFloatingProps } = useFloatingElement<HTMLInputElement>(calendarProps);
@@ -72,7 +70,7 @@ const DatePicker: FC<DatePickerProps> = (props) => {
 
     const handleChange = useCallback(
         (date: Date) => {
-            setValue?.(date);
+            setValue(date);
 
             onChange?.(date);
 
