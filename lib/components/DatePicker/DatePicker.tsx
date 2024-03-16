@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef, FC, ReactNode, useCallback, useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { BaseCalendarProps, UseFloatingElementProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
 import useControlledState from '../../hooks/useControlledState';
@@ -87,7 +86,7 @@ const DatePicker: FC<DatePickerProps> = (props) => {
                 <Calendar
                     {...getFloatingProps()}
                     ref={refs.setFloating}
-                    className={twMerge('w-[320px] bg-white shadow-2xl p-4 rounded-xl', calendarProps.className)}
+                    className={['rcl-datepicker-calendar', calendarProps.className].join(' ')}
                     style={{ ...context.floatingStyles }}
                     value={value}
                     onChange={handleChange}

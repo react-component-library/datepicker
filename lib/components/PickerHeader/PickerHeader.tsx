@@ -13,7 +13,7 @@ const PickerHeader: FC<PickerHeaderProps> = (props) => {
     const { isPrevDisabled, isNextDisabled, onPrevClick, onNextClick, children } = props;
 
     return (
-        <div className="flex items-center justify-between gap-4">
+        <div className="rcl-datepicker-header">
             <PickerNavigationButton onClick={onPrevClick} isDisabled={isPrevDisabled} aria-label="Previous">
                 <svg width={5} height={8} viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -26,9 +26,7 @@ const PickerHeader: FC<PickerHeaderProps> = (props) => {
                 </svg>
             </PickerNavigationButton>
 
-            <div className="flex items-center justify-center text-gray-900 text-sm font-medium text-center flex-1">
-                {children}
-            </div>
+            <div className="rcl-datepicker-header-content">{children}</div>
 
             <PickerNavigationButton onClick={onNextClick} isDisabled={isNextDisabled} aria-label="Next">
                 <svg width={5} height={8} viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">

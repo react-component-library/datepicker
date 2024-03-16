@@ -46,11 +46,15 @@ const useDayPicker = (props: UseDayPickerProps) => {
     }, [preSelectionDate]);
 
     const prevDisabled = useMemo(() => {
-        return isLessThanDate(preSelectionDate, minDate);
+        return (
+            preSelectionDate.getFullYear() <= minDate.getFullYear() && preSelectionDate.getMonth() <= minDate.getMonth()
+        );
     }, [minDate, preSelectionDate]);
 
     const nextDisabled = useMemo(() => {
-        return isGreaterThanDate(preSelectionDate, maxDate);
+        return (
+            preSelectionDate.getFullYear() >= maxDate.getFullYear() && preSelectionDate.getMonth() >= maxDate.getMonth()
+        );
     }, [maxDate, preSelectionDate]);
 
     const isSameDateAsSelected = useCallback(

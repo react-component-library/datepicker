@@ -1,11 +1,10 @@
-import { ComponentPropsWithRef, Dispatch, FC, SetStateAction, forwardRef, useCallback } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { ComponentPropsWithRef, Dispatch, FC, Fragment, SetStateAction, forwardRef, useCallback } from 'react';
 import { WeekDays } from '../../helpers/constants';
+import { BaseCalendarProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
 import useDayPicker from '../../hooks/useDayPicker';
 import DayPickerCell from '../DayPickerCell/DayPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
-import { BaseCalendarProps } from '../../helpers/types';
 
 interface DayPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
     preSelectionDate?: Date;
@@ -68,20 +67,20 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
                 >
                     <div
                         role={onMonthPickerSelect ? 'button' : undefined}
-                        className={twMerge(
-                            'flex items-center justify-center h-6 px-3 rounded-md',
-                            onMonthPickerSelect ? 'hover:bg-blue-100' : ''
-                        )}
+                        className={[
+                            'rcl-datepicker-header-action',
+                            onMonthPickerSelect ? 'rcl-datepicker-header-action-hover' : '',
+                        ].join(' ')}
                         onClick={() => onMonthPickerSelect?.()}
                     >
                         {month}
                     </div>
                     <div
                         role={onYearPickerSelect ? 'button' : undefined}
-                        className={twMerge(
-                            'flex items-center justify-center h-6 px-3 rounded-md',
-                            onYearPickerSelect ? 'hover:bg-blue-100' : ''
-                        )}
+                        className={[
+                            'rcl-datepicker-header-action',
+                            onYearPickerSelect ? 'rcl-datepicker-header-action-hover' : '',
+                        ].join(' ')}
                         onClick={() => onYearPickerSelect?.()}
                     >
                         {year}
@@ -93,11 +92,7 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
     );
 
     const renderDayPickerWeekDay = useCallback((day: string) => {
-        return (
-            <div className="flex items-center justify-center text-xs font-medium text-gray-400 py-3 border-b border-gray-100">
-                {day}
-            </div>
-        );
+        return <div className="rcl-datepicker-weekday-cell">{day}</div>;
     }, []);
 
     const renderDayPickerCell = useCallback(
@@ -124,17 +119,17 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
                 incrementMonth: incrementMonth,
             })}
 
-            <div className="grid grid-cols-7 mt-2">
+            <div className="rcl-datepicker-day-row">
                 {WeekDays.map((day) => (
-                    <div key={day} className="col-span-1">
-                        {renderDayPickerWeekDay(day)}
-                    </div>
+                    <Fragment key={day}>{renderDayPickerWeekDay(day)}</Fragment>
                 ))}
             </div>
 
-            <div className="grid grid-cols-7 mt-2">
+            <div className="rcl-datepicker-divider"></div>
+
+            <div className="rcl-datepicker-day-row">
                 {daysOnCalendar.map((date) => (
-                    <div key={date.toString()} className="col-span-1">
+                    <Fragment key={date.toString()}>
                         {renderDayPickerCell({
                             date: date,
                             onSelect: () => selectDate(date),
@@ -142,7 +137,7 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
                             isCurrentMonth: isSameMonthAsView(date),
                             isDisabled: isGreaterThanMaxDate(date) || isLessThanMinDate(date),
                         })}
-                    </div>
+                    </Fragment>
                 ))}
             </div>
         </div>

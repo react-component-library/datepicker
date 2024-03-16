@@ -1,9 +1,8 @@
-import { ComponentPropsWithRef, Dispatch, FC, SetStateAction, forwardRef, useCallback } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { ComponentPropsWithRef, Dispatch, FC, Fragment, SetStateAction, forwardRef, useCallback } from 'react';
+import { BaseCalendarProps } from '../../helpers/types';
 import useMonthPicker from '../../hooks/useMonthPicker';
 import MonthPickerCell from '../MonthPickerCell/MonthPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
-import { BaseCalendarProps } from '../../helpers/types';
 
 interface MonthPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
     preSelectionDate?: Date;
@@ -62,10 +61,10 @@ const MonthPicker: FC<MonthPickerProps> = forwardRef((props, ref) => {
                 >
                     <div
                         role={onYearPickerSelect ? 'button' : undefined}
-                        className={twMerge(
-                            'flex items-center justify-center h-6 px-3 rounded-md',
-                            onYearPickerSelect ? 'hover:bg-blue-100' : ''
-                        )}
+                        className={[
+                            'rcl-datepicker-header-action',
+                            onYearPickerSelect ? 'rcl-datepicker-header-action-hover' : '',
+                        ].join(' ')}
                         onClick={() => onYearPickerSelect?.()}
                     >
                         {year}
@@ -93,16 +92,16 @@ const MonthPicker: FC<MonthPickerProps> = forwardRef((props, ref) => {
                 incrementYear: incrementYear,
             })}
 
-            <div className="grid grid-cols-3 gap-2 mt-4">
+            <div className="rcl-datepicker-month-row">
                 {monthsOnCalendar.map((date) => (
-                    <div key={date.toString()} className="col-span-1">
+                    <Fragment key={date.toString()}>
                         {renderMonthPickerCell({
                             date: date,
                             onSelect: () => selectMonth(date),
                             isSelected: isSameYearAndMonthAsSelected(date),
                             isDisabled: isGreaterThanMaxDate(date) || isLessThanMinDate(date),
                         })}
-                    </div>
+                    </Fragment>
                 ))}
             </div>
         </div>

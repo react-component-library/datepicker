@@ -1,3 +1,183 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --rcl-datepicker-accent-color: #1570ef;
+    --rcl-datepicker-accent-color-foreground: #fff;
+    --rcl-datepicker-hover-color: #eff8ff;
+
+    --rcl-datepicker-background-color: #fff;
+    --rcl-datepicker-text-color-main: #101828;
+    --rcl-datepicker-text-color-secondary: #98a2b3;
+    --rcl-datepicker-text-color-muted: #d0d5dd;
+    --rcl-datepicker-separator-color: #f2f4f7;
+
+    --rcl-datepicker-calendar-width: 20rem;
+    --rcl-datepicker-calendar-padding: 1.5rem;
+    --rcl-datepicker-calendar-border-radius: 0.75rem;
+
+    --rcl-datepicker-header-font-size: 0.875rem;
+    --rcl-datepicker-header-font-weight: 500;
+
+    --rcl-datepicker-cell-font-size: 0.75rem;
+    --rcl-datepicker-cell-font-weight: 500;
+    --rcl-datepicker-cell-padding-horizontal: 0.5rem;
+    --rcl-datepicker-cell-padding-vertical: 0.45rem;
+    --rcl-datepicker-cell-border-radius: 0.5rem;
+}
+
+/*********************************************************************************
+*   DatePicker
+*********************************************************************************/
+
+.rcl-datepicker-calendar {
+    width: var(--rcl-datepicker-calendar-width);
+    padding: var(--rcl-datepicker-calendar-padding);
+    border-radius: var(--rcl-datepicker-calendar-border-radius);
+    background-color: var(--rcl-datepicker-background-color);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+/*********************************************************************************
+*   DayPicker
+*********************************************************************************/
+
+.rcl-datepicker-day-row {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    margin-top: 0.5rem;
+}
+
+.rcl-datepicker-weekday-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--rcl-datepicker-cell-font-size);
+    font-weight: var(--rcl-datepicker-cell-font-weight);
+    color: var(--rcl-datepicker-text-color-secondary);
+    padding: 0.75rem 0;
+}
+
+.rcl-datepicker-divider {
+    border-bottom: 1px solid var(--rcl-datepicker-separator-color);
+}
+
+/*********************************************************************************
+*   MonthPicker
+*********************************************************************************/
+
+.rcl-datepicker-month-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/*********************************************************************************
+*   YearPicker
+*********************************************************************************/
+
+.rcl-datepicker-year-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/*********************************************************************************
+*   DayPickerCell
+*   MonthPickerCell
+*   YearPickerCell
+*********************************************************************************/
+
+.rcl-datepicker-header-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    padding: 0 0.75rem;
+    border-radius: 0.375rem;
+    color: var(--rcl-datepicker-text-color-main);
+    cursor: pointer;
+}
+
+.rcl-datepicker-header-action-hover:hover {
+    background-color: var(--rcl-datepicker-hover-color);
+}
+
+.rcl-datepicker-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--rcl-datepicker-cell-height);
+    padding: var(--rcl-datepicker-cell-padding-vertical) var(--rcl-datepicker-cell-padding-horizontal);
+    font-size: var(--rcl-datepicker-cell-font-size);
+    font-weight: var(--rcl-datepicker-cell-font-weight);
+    border-radius: var(--rcl-datepicker-cell-border-radius);
+    color: var(--rcl-datepicker-text-color-secondary);
+    cursor: pointer;
+
+    &.current-month {
+        color: var(--rcl-datepicker-text-color-main);
+    }
+
+    &.active {
+        color: var(--rcl-datepicker-accent-color-foreground);
+        background-color: var(--rcl-datepicker-accent-color);
+    }
+
+    &.disabled {
+        color: var(--rcl-datepicker-text-color-muted);
+        cursor: not-allowed;
+    }
+
+    &:not(.disabled):not(.active):hover {
+        background-color: var(--rcl-datepicker-hover-color);
+    }
+}
+
+/*********************************************************************************
+*   PickerHeader
+*********************************************************************************/
+
+.rcl-datepicker-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.rcl-datepicker-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-size: var(--rcl-datepicker-header-font-size);
+    font-weight: var(--rcl-datepicker-header-font-weight);
+    color: var(--rcl-datepicker-text-color-main);
+}
+
+/*********************************************************************************
+*   PickerNavigationButton
+*********************************************************************************/
+
+.rcl-datepicker-navigation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 0.375rem;
+    color: var(--rcl-datepicker-text-color-main);
+    cursor: pointer;
+    box-shadow: 0px 0px 2px rgba(18, 40, 44, 0.1), 0px 2px 4px rgba(18, 40, 44, 0.1);
+    border: 1px solid var(--rcl-datepicker-separator-color);
+
+    &.disabled {
+        color: var(--rcl-datepicker-text-color-muted);
+        cursor: not-allowed;
+        box-shadow: none;
+        border: none;
+    }
+
+    &:not(.disabled):hover {
+        background-color: var(--rcl-datepicker-hover-color);
+    }
+}

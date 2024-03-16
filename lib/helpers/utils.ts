@@ -31,7 +31,10 @@ export const getMonthsOnCalendar = (year: number) => {
     const monthsOfYear = [];
 
     for (let month = 1; month <= 12; month++) {
-        const mDate = moment().year(year).month(month).date(1);
+        const mDate = moment()
+            .year(year)
+            .month(month - 1)
+            .date(1);
 
         monthsOfYear.push(mDate.toDate());
     }

@@ -1,4 +1,5 @@
 import { DateCalendar, DatePicker, DayPicker, MonthPicker, YearPicker } from '../lib';
+import '../lib/index.scss';
 import { useState } from 'react';
 
 function App() {
@@ -38,14 +39,17 @@ function App() {
 
             <div className="h-[400px]">
                 <DatePicker
-                    onChange={() => console.log('a')}
+                    onChange={(date) => console.log(date)}
                     inputProps={{ placeholder: 'select a date (Uncontrolled)', className: 'w-[320px]' }}
+                    maxDate={new Date()}
                 />
 
                 <DatePicker
                     value={date5}
                     onChange={setDate5}
                     inputProps={{ placeholder: 'select a date (Controlled)', className: 'w-[320px]' }}
+                    minDate={new Date('2024-01-29')}
+                    maxDate={new Date('2024-03-01')}
                 />
             </div>
         </div>

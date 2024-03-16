@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, Dispatch, FC, SetStateAction, forwardRef, useCallback } from 'react';
+import { ComponentPropsWithRef, Dispatch, FC, Fragment, SetStateAction, forwardRef, useCallback } from 'react';
 import useYearPicker from '../../hooks/useYearPicker';
 import PickerHeader from '../PickerHeader/PickerHeader';
 import YearPickerCell from '../YearPickerCell/YearPickerCell';
@@ -57,7 +57,7 @@ const YearPicker: FC<YearPickerProps> = forwardRef((props, ref) => {
                     isNextDisabled={nextDisabled}
                     onNextClick={showNextYears}
                 >
-                    <div className="flex items-center justify-center h-6 px-3 rounded-md">
+                    <div className="rcl-datepicker-header-action">
                         {startYear} - {endYear}
                     </div>
                 </PickerHeader>
@@ -84,16 +84,16 @@ const YearPicker: FC<YearPickerProps> = forwardRef((props, ref) => {
                 showNextYears: showNextYears,
             })}
 
-            <div className="grid grid-cols-3 gap-2 mt-4">
+            <div className="rcl-datepicker-year-row">
                 {yearsOnCalendar.map((date) => (
-                    <div key={date.toString()} className="col-span-1">
+                    <Fragment key={date.toString()}>
                         {renderYearPickerCell({
                             date: date,
                             onSelect: () => selectYear(date),
                             isSelected: isSameYearAsSelected(date),
                             isDisabled: isGreaterThanMaxDate(date) || isLessThanMinDate(date),
                         })}
-                    </div>
+                    </Fragment>
                 ))}
             </div>
         </div>
