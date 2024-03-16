@@ -29,6 +29,7 @@
     "dev": "vite",
     "build": "tsc --p ./tsconfig.build.json && vite build",
     "prepublishOnly": "npm run build",
+    "publish": "npm publish --access=public",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest"
