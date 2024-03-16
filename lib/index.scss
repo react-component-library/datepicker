@@ -23,7 +23,11 @@
     --rcl-datepicker-cell-border-radius: 0.5rem;
 }
 
-* {
+.rcl-datepicker-calendar {
+    box-sizing: border-box;
+}
+
+.rcl-datepicker-calendar > * {
     box-sizing: border-box;
 }
 

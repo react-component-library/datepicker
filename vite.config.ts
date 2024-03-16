@@ -11,7 +11,7 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, 'lib/index.ts'),
             formats: ['es'],
-            name: 'react-datepicker',
+            name: 'datepicker',
             fileName: 'index',
         },
         copyPublicDir: false,
