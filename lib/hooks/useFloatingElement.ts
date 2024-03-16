@@ -4,6 +4,7 @@ import {
     flip as floatingUiFlip,
     hide as floatingUiHide,
     offset as floatingUiOffset,
+    shift as floatingUiShift,
     useClick,
     useDismiss,
     useFloating,
@@ -33,7 +34,12 @@ const useFloatingElement = <RT extends ReferenceType = ReferenceType>(
     const { refs, context, middlewareData } = useFloating<RT>({
         whileElementsMounted: autoUpdate,
         placement: placement,
-        middleware: [floatingUiOffset(offset), floatingUiFlip({ padding: 20 }), floatingUiHide({ padding: 20 })],
+        middleware: [
+            floatingUiOffset(offset),
+            floatingUiShift({ padding: 0 }),
+            floatingUiFlip({ padding: 0 }),
+            floatingUiHide({ padding: 0 }),
+        ],
         open: open,
         onOpenChange: setOpen,
     });
