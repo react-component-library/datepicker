@@ -10,7 +10,7 @@
     --rcl-datepicker-separator-color: #f2f4f7;
 
     --rcl-datepicker-calendar-width: 20rem;
-    --rcl-datepicker-calendar-padding: 1.5rem;
+    --rcl-datepicker-calendar-padding: 1.25rem;
     --rcl-datepicker-calendar-border-radius: 0.75rem;
 
     --rcl-datepicker-header-font-size: 0.875rem;
@@ -19,8 +19,12 @@
     --rcl-datepicker-cell-font-size: 0.75rem;
     --rcl-datepicker-cell-font-weight: 500;
     --rcl-datepicker-cell-padding-horizontal: 0.5rem;
-    --rcl-datepicker-cell-padding-vertical: 0.45rem;
+    --rcl-datepicker-cell-padding-vertical: 0.5rem;
     --rcl-datepicker-cell-border-radius: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /*********************************************************************************

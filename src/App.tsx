@@ -1,5 +1,4 @@
 import { DateCalendar, DatePicker, DayPicker, MonthPicker, YearPicker } from '../lib';
-import '../lib/index.scss';
 import { useState } from 'react';
 
 function App() {
