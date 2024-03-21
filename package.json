@@ -2,7 +2,7 @@
   "name": "@react-component-library/datepicker",
   "description": "A user-friendly, intuitive, reusable, and customizable datepicker for React.",
   "author": "Khan Cirhan",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "license": "ISC",
   "type": "module",
   "main": "dist/index.js",
@@ -29,7 +29,6 @@
     "dev": "vite",
     "build": "tsc --p ./tsconfig.build.json && vite build",
     "prepublishOnly": "npm run build",
-    "publish": "npm publish --access=public",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest"

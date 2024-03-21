@@ -50,6 +50,15 @@ function App() {
                     minDate={new Date('2024-01-29')}
                     maxDate={new Date('2024-03-01')}
                 />
+
+                <DatePicker
+                    value={date5}
+                    onChange={setDate5}
+                    inputProps={{ placeholder: 'select a date (Controlled)', className: 'w-[320px]' }}
+                    fixedRows
+                    // minDate={new Date('2024-01-29')}
+                    // maxDate={new Date('2024-03-01')}
+                />
             </div>
         </div>
     );

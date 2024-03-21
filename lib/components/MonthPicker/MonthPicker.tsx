@@ -1,14 +1,10 @@
-import { ComponentPropsWithRef, Dispatch, FC, Fragment, SetStateAction, forwardRef, useCallback } from 'react';
-import { BaseCalendarProps } from '../../helpers/types';
+import { ComponentPropsWithRef, FC, Fragment, forwardRef, useCallback } from 'react';
+import { BaseMonthPickerProps } from '../../helpers/types';
 import useMonthPicker from '../../hooks/useMonthPicker';
 import MonthPickerCell from '../MonthPickerCell/MonthPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
 
-interface MonthPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    preSelectionDate?: Date;
-    setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
-    onYearPickerSelect?: () => void;
-}
+interface MonthPickerProps extends BaseMonthPickerProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
 
 const MonthPicker: FC<MonthPickerProps> = forwardRef((props, ref) => {
     const {

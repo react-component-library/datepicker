@@ -3,12 +3,16 @@ import moment from 'moment';
 const MIN_DATE_LIMIT = 200;
 const MAX_DATE_LIMIT = 200;
 
-export const getDaysOnCalendar = (year: number, month: number) => {
+const DAY_PICKER_ROWS = 6;
+
+export const getDaysOnCalendar = (year: number, month: number, options: { fixedRows: boolean }) => {
+    const { fixedRows } = options;
+
     const firstDay = moment().year(year).month(month).date(1).day();
     const daysInMonth = moment().year(year).month(month).daysInMonth();
 
     let index = 1;
-    const rows = Math.ceil((firstDay + daysInMonth) / 7);
+    const rows = fixedRows ? DAY_PICKER_ROWS : Math.ceil((firstDay + daysInMonth) / 7);
     const cols = 7;
     const datesOnCalendar = [];
 

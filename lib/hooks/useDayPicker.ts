@@ -17,6 +17,7 @@ interface UseDayPickerProps {
     setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
     minDate?: Date;
     maxDate?: Date;
+    fixedRows?: boolean;
 }
 
 const useDayPicker = (props: UseDayPickerProps) => {
@@ -27,6 +28,7 @@ const useDayPicker = (props: UseDayPickerProps) => {
         setPreSelectionDate: controlledSetPreSelectionDate,
         minDate = getDefaultMinDate(),
         maxDate = getDefaultMaxDate(),
+        fixedRows = false,
     } = props;
 
     const [value, setValue] = useControlledState({
@@ -42,7 +44,7 @@ const useDayPicker = (props: UseDayPickerProps) => {
     });
 
     const daysOnCalendar = useMemo(() => {
-        return getDaysOnCalendar(preSelectionDate.getFullYear(), preSelectionDate.getMonth());
+        return getDaysOnCalendar(preSelectionDate.getFullYear(), preSelectionDate.getMonth(), { fixedRows });
     }, [preSelectionDate]);
 
     const prevDisabled = useMemo(() => {

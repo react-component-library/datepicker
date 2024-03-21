@@ -1,17 +1,12 @@
-import { ComponentPropsWithRef, Dispatch, FC, Fragment, SetStateAction, forwardRef, useCallback } from 'react';
+import { ComponentPropsWithRef, FC, Fragment, forwardRef, useCallback } from 'react';
 import { WeekDays } from '../../helpers/constants';
-import { BaseCalendarProps } from '../../helpers/types';
+import { BaseDayPickerProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
 import useDayPicker from '../../hooks/useDayPicker';
 import DayPickerCell from '../DayPickerCell/DayPickerCell';
 import PickerHeader from '../PickerHeader/PickerHeader';
 
-interface DayPickerProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
-    preSelectionDate?: Date;
-    setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
-    onMonthPickerSelect?: () => void;
-    onYearPickerSelect?: () => void;
-}
+interface DayPickerProps extends BaseDayPickerProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
 
 const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
     const {
@@ -23,6 +18,7 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
         onYearPickerSelect,
         minDate,
         maxDate,
+        fixedRows,
         ...rest
     } = props;
 
@@ -45,6 +41,7 @@ const DayPicker: FC<DayPickerProps> = forwardRef((props, ref) => {
         setPreSelectionDate: controlledSetPreSelectionDate,
         minDate,
         maxDate,
+        fixedRows,
     });
 
     const renderDayPickerHeader = useCallback(

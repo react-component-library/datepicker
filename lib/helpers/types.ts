@@ -1,14 +1,58 @@
 import { ExtendedRefs, FloatingContext, Placement, ReferenceType } from '@floating-ui/react';
 import { Dispatch, HTMLProps, SetStateAction } from 'react';
 
-export type FloatingPlacement = Placement;
+/*********************************************************************************
+ * Base Props
+ *********************************************************************************/
 
-export interface BaseCalendarProps {
+interface BaseProps {
     value?: Date;
     onChange?: (date: Date) => void;
     minDate?: Date;
     maxDate?: Date;
 }
+
+interface BasePickerProps extends BaseProps {
+    preSelectionDate?: Date;
+    setPreSelectionDate?: Dispatch<SetStateAction<Date>>;
+}
+
+/*********************************************************************************
+ * Calendar Props
+ *********************************************************************************/
+
+export interface BaseDateCalendarProps extends BaseProps {
+    fixedRows?: boolean;
+}
+
+/*********************************************************************************
+ * DayPicker Props
+ *********************************************************************************/
+
+export interface BaseDayPickerProps extends BasePickerProps, Pick<BaseDateCalendarProps, 'fixedRows'> {
+    onMonthPickerSelect?: () => void;
+    onYearPickerSelect?: () => void;
+}
+
+/*********************************************************************************
+ * MonthPicker Props
+ *********************************************************************************/
+
+export interface BaseMonthPickerProps extends BasePickerProps {
+    onYearPickerSelect?: () => void;
+}
+
+/*********************************************************************************
+ * YearPicker Props
+ *********************************************************************************/
+
+export interface BaseYearPickerProps extends BasePickerProps {}
+
+/*********************************************************************************
+ * Floating Props
+ *********************************************************************************/
+
+export type FloatingPlacement = Placement;
 
 export interface UseFloatingElementProps {
     open?: boolean;

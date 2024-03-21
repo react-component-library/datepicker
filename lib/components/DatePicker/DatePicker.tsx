@@ -1,19 +1,19 @@
 import { ComponentPropsWithoutRef, FC, ReactNode, useCallback, useMemo } from 'react';
-import { BaseCalendarProps, UseFloatingElementProps } from '../../helpers/types';
+import { BaseDateCalendarProps, UseFloatingElementProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
 import useControlledState from '../../hooks/useControlledState';
 import useFloatingElement from '../../hooks/useFloatingElement';
 import Calendar from '../DateCalendar/DateCalendar';
 
-// value
-// onChange
-// format
-// minDate
-// maxDate
-
+// TODO
+//// value
+//// onChange
+//// format
+//// minDate
+//// maxDate
+//// fixedRows
 // excludeDates
 // includeDates
-
 // highlightDates
 // closeOnSelect
 // defaultValue
@@ -29,22 +29,24 @@ interface CalendarProps extends UseFloatingElementProps {
     className?: string;
 }
 
-interface DatePickerProps extends BaseCalendarProps {
-    format?: string;
+interface DatePickerProps extends BaseDateCalendarProps {
     calendarProps?: CalendarProps;
     inputProps?: InputProps;
     renderInput?: (inputProps: InputProps) => ReactNode;
+    format?: string;
+    fixedRows?: boolean;
 }
 const DatePicker: FC<DatePickerProps> = (props) => {
     const {
         value: controlledValue,
         onChange,
-        format,
         minDate,
         maxDate,
         calendarProps = {},
         inputProps = {},
         renderInput,
+        format,
+        fixedRows,
     } = props;
 
     const [value, setValue] = useControlledState({
@@ -92,6 +94,7 @@ const DatePicker: FC<DatePickerProps> = (props) => {
                     onChange={handleChange}
                     minDate={minDate}
                     maxDate={maxDate}
+                    fixedRows={fixedRows}
                 />
             )}
         </>

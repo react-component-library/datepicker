@@ -4,10 +4,10 @@ import { getDefaultMaxDate, getDefaultMinDate, getInitialViewDate } from '../../
 import DayPicker from '../DayPicker/DayPicker';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import YearPicker from '../YearPicker/YearPicker';
-import { BaseCalendarProps } from '../../helpers/types';
+import { BaseDateCalendarProps } from '../../helpers/types';
 import useControlledState from '../../hooks/useControlledState';
 
-interface DateCalendarProps extends BaseCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
+interface DateCalendarProps extends BaseDateCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
 
 const DateCalendar: FC<DateCalendarProps> = forwardRef((props, ref) => {
     const {
@@ -15,6 +15,7 @@ const DateCalendar: FC<DateCalendarProps> = forwardRef((props, ref) => {
         onChange,
         minDate = getDefaultMinDate(),
         maxDate = getDefaultMaxDate(),
+        fixedRows,
         ...rest
     } = props;
 
@@ -69,6 +70,7 @@ const DateCalendar: FC<DateCalendarProps> = forwardRef((props, ref) => {
                     onYearPickerSelect={handleYearPickerSelect}
                     minDate={minDate}
                     maxDate={maxDate}
+                    fixedRows={fixedRows}
                 />
             )}
 
