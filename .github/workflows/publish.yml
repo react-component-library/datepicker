@@ -1,5 +1,4 @@
 name: Publish Package to npmjs
-run-name: ${{ github.actor }} is publishing...
 
 on:
     push:
