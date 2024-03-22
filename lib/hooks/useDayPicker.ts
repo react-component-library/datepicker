@@ -1,5 +1,5 @@
+import { useControlledState } from '@react-component-library/utils';
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
-import useControlledState from './useControlledState';
 import {
     getDaysOnCalendar,
     getDefaultMaxDate,
@@ -45,7 +45,7 @@ const useDayPicker = (props: UseDayPickerProps) => {
 
     const daysOnCalendar = useMemo(() => {
         return getDaysOnCalendar(preSelectionDate.getFullYear(), preSelectionDate.getMonth(), { fixedRows });
-    }, [preSelectionDate]);
+    }, [fixedRows, preSelectionDate]);
 
     const prevDisabled = useMemo(() => {
         return (

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
 import { getDefaultMaxDate, getDefaultMinDate, getInitialViewDate, getMonthsOnCalendar } from '../helpers/utils';
-import useControlledState from './useControlledState';
+import { useControlledState } from '@react-component-library/utils';
 
 interface UseMonthPickerProps {
     value: Date;

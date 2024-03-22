@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, FC, ReactNode, useCallback, useMemo } from 'react';
 import { BaseDateCalendarProps, UseFloatingElementProps } from '../../helpers/types';
 import { formatDate } from '../../helpers/utils';
-import useControlledState from '../../hooks/useControlledState';
+import { useControlledState } from '@react-component-library/utils';
 import useFloatingElement from '../../hooks/useFloatingElement';
 import Calendar from '../DateCalendar/DateCalendar';
 

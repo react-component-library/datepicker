@@ -2,7 +2,7 @@
   "name": "@react-component-library/datepicker",
   "description": "A user-friendly, intuitive, reusable, and customizable datepicker for React.",
   "author": "Khan Cirhan",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "ISC",
   "type": "module",
   "main": "dist/index.js",
@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.0",
+    "@react-component-library/utils": "^0.0.1",
     "moment": "^2.30.1"
   },
   "devDependencies": {
