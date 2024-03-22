@@ -1,5 +1,9 @@
-import { DateCalendar, DatePicker, DayPicker, MonthPicker, YearPicker } from '../lib';
 import { useState } from 'react';
+import { DatePicker, DayPicker, MonthPicker, YearPicker } from '../dist';
+
+import DateCalendar from '../dist/components/DateCalendar/DateCalendar';
+
+import '../dist/index.css';
 
 function App() {
     const [date1, setDate1] = useState(new Date());

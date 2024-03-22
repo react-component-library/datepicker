@@ -1,5 +1,4 @@
 name: Publish Package to npmjs
-run-name: ${{ github.actor }} is publishing...
 
 on:
     push:
@@ -28,6 +27,7 @@ jobs:
               run: npm run build
 
             - name: Publish package
-              run: npm publish --access=public
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+              uses: JS-DevTools/npm-publish@v3
+              with:
+                  access: public
+                  token: ${{ secrets.NPM_TOKEN }}
