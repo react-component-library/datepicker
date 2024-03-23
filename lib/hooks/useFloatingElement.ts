@@ -11,7 +11,7 @@ import {
     useInteractions,
 } from '@floating-ui/react';
 import { useEffect } from 'react';
-import { useControlledState } from '@react-component-library/utils';
+import { useControlledState } from '@react-component-library/utils/hooks';
 import { UseFloatingElementProps, UseFloatingElementReturn } from '../helpers/types';
 
 const useFloatingElement = <RT extends ReferenceType = ReferenceType>(

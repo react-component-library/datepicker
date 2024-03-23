@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
 import { getDefaultMaxDate, getDefaultMinDate, getInitialViewDate, getYearsOnCalendar } from '../helpers/utils';
-import { useControlledState } from '@react-component-library/utils';
+import { useControlledState } from '@react-component-library/utils/hooks';
 
 const YEAR_CELL_COUNT = 12;
 

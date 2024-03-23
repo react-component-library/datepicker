@@ -1,4 +1,4 @@
-import { useControlledState } from '@react-component-library/utils';
+import { useControlledState } from '@react-component-library/utils/hooks';
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
 import {
     getDaysOnCalendar,

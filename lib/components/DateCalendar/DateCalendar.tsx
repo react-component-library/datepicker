@@ -5,7 +5,7 @@ import DayPicker from '../DayPicker/DayPicker';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import YearPicker from '../YearPicker/YearPicker';
 import { BaseDateCalendarProps } from '../../helpers/types';
-import { useControlledState } from '@react-component-library/utils';
+import { useControlledState } from '@react-component-library/utils/hooks';
 
 interface DateCalendarProps extends BaseDateCalendarProps, Omit<ComponentPropsWithRef<'div'>, 'onChange'> {}
 

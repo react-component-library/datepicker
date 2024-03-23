@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.0",
-    "@react-component-library/utils": "^0.0.1",
+    "@react-component-library/utils": "^0.0.2",
     "moment": "^2.30.1"
   },
   "devDependencies": {
